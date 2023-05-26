@@ -43,6 +43,8 @@ Route::controller(\App\Http\Controllers\EmployeeController::class)->group(functi
     Route::post('form/departments/update', 'updateRecordDepartment')->name('form/departments/update');
     Route::post('form/departments/delete', 'deleteRecordDepartment')->name('form/departments/delete');
     Route::get('all/employee/card', 'cardAllEmployee')->name('all/employee/card');
+    Route::post('all/employee/save', 'saveRecord')->name('all/employee/save');
+    Route::get('all/employee/list', 'listAllEmployee')->name('all/employee/list');
 });
 
 // -----------------------------settings----------------------------------------//

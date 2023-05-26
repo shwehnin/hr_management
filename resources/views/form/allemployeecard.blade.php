@@ -28,7 +28,7 @@
             <!-- /Page Header -->
 
             <!-- Search Filter -->
-            <form action="#" method="POST">
+            <form action="" method="POST">
                 @csrf
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3">
@@ -90,7 +90,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="#" method="POST">
+                        <form action="{{route('all/employee/save')}}" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col-sm-6">

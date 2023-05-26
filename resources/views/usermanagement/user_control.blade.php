@@ -75,7 +75,7 @@
                                     <td>
                                        <span hidden class="image">{{ $user->avatar}}</span>
                                         <h2 class="table-avatar">
-                                           <a href="{{ url('employee/profile/'.$user->rec_id) }}" class="avatar"><img src="{{ URL::to('/assets/images/'. $user->avatar) }}" alt="{{ $user->avatar }}"></a>
+                                           <a href="{{ url('employee/profile/'.$user->rec_id) }}" class="avatar"><img src="{{ URL::to('/assets/images/'. $user->avatar) }}" class="" alt="{{ $user->avatar }}"></a>
                                             <a href="{{ url('employee/profile/'.$user->id) }}" class="name">{{ $user->name }}</span></a>
                                         </h2>
                                     </td>
