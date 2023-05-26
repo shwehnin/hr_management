@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use DB;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -30,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -78,5 +80,20 @@ class RegisterController extends Controller
         return view('auth.register', compact('role'));
     }
 
-    
+    public function storeUser(Request $request)
+    {
+        $dt       = Carbon::now();
+        $todayDate = $dt->toDayDateTimeString();
+
+        User::create([
+            'name'      => $request->name,
+            'avatar'    => $request->image,
+            'email'     => $request->email,
+            'join_date' => $todayDate,
+            'role_name' => $request->role_name,
+            'status'    => 'Active',
+            'password'  => Hash::make($request->password),
+        ]);
+        return redirect()->route('login')->with('success', 'Create new account successfully');
+    }
 }

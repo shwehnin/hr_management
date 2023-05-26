@@ -49,7 +49,7 @@
                                         <label></label>
                                     </div>
                                     <div class="col-auto">
-                                        <a class="text-muted" href="{{ route('password.email') }}">
+                                        <a class="text-muted" href="#">
                                             Forgot password?
                                         </a>
                                     </div>

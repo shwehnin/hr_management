@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Session;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use DB;
 
 class LoginController extends Controller
 {
@@ -53,9 +54,9 @@ class LoginController extends Controller
         $password = $request->password;
 
         $dt = Carbon::now();
-        $todayDate = $dt->todayDateTimeString();
+        $todayDate = $dt->toDayDateTimeString();
 
-        if(Auth::attempt(['email' => $username, 'password' => $password, 'active', 'Active'])) {
+        if(Auth::attempt(['email' => $username, 'password' => $password, 'status' => 'Active'])) {
             $user = Auth::user();
             Session::put('name', $user->name);
             Session::put('email', $user->email);
@@ -76,8 +77,22 @@ class LoginController extends Controller
         }
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
+        $dt = Carbon::now();
+        $todayDate = $dt->toDayDateTimeString();
+        $activityLog = ['name' => Session::get('name'), 'email' => Session::get('email'), 'description' => 'Has log out', 'date_time' => $todayDate];
+        DB::table('activity_logs')->insert($activityLog);
+        $request->session()->forget('name');
+        $request->session()->forget('email');
+        $request->session()->forget('rec_id');
+        $request->session()->forget('join_date');
+        $request->session()->forget('phone_number');
+        $request->session()->forget('status');
+        $request->session()->forget('role_name');
+        $request->session()->forget('avatar');
+        $request->session()->forget('position');
+        $request->session()->forget('department');
         Session::flush();
         Auth::logout();
         return redirect('login');

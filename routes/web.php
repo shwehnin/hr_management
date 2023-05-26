@@ -14,9 +14,9 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // ----------------------------- register ---------------------------------------//
 Route::controller(\App\Http\Controllers\Auth\RegisterController::class)->group(function() {
@@ -33,7 +33,7 @@ Route::controller(\App\Http\Controllers\Auth\LoginController::class)->group(func
 
 // ----------------------------- main dashboard ------------------------------//
 Route::controller(HomeController::class)->group(function() {
-    Route::get('home', 'index')->name('home');
+    Route::get('/', 'index')->name('home');
 });
 
 // ----------------------------- form employee ------------------------------//
